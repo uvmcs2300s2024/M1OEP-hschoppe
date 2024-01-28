@@ -6,5 +6,6 @@ set(CMAKE_CXX_STANDARD 14)
 include_directories(.)
 
 add_executable(M1OEP_hschoppe
-        header.h
-        main.cpp)
+        Connections.h
+        main.cpp
+        Connections.cpp)
