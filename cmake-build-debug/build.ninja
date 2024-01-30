@@ -56,8 +56,8 @@ build CMakeFiles/M1OEP_hschoppe.dir/main.cpp.obj: CXX_COMPILER__M1OEP_hschoppe_u
   OBJECT_DIR = CMakeFiles\M1OEP_hschoppe.dir
   OBJECT_FILE_DIR = CMakeFiles\M1OEP_hschoppe.dir
 
-build CMakeFiles/M1OEP_hschoppe.dir/Hangman.cpp.obj: CXX_COMPILER__M1OEP_hschoppe_unscanned_Debug C$:/Users/darkf/CLion$ 2023.2.1/jbr/bin/M1OEP-hschoppe/Hangman.cpp || cmake_object_order_depends_target_M1OEP_hschoppe
-  DEP_FILE = CMakeFiles\M1OEP_hschoppe.dir\Hangman.cpp.obj.d
+build CMakeFiles/M1OEP_hschoppe.dir/Connections.cpp.obj: CXX_COMPILER__M1OEP_hschoppe_unscanned_Debug C$:/Users/darkf/CLion$ 2023.2.1/jbr/bin/M1OEP-hschoppe/Connections.cpp || cmake_object_order_depends_target_M1OEP_hschoppe
+  DEP_FILE = CMakeFiles\M1OEP_hschoppe.dir\Connections.cpp.obj.d
   FLAGS = -g -std=gnu++14 -fdiagnostics-color=always
   INCLUDES = -I"C:/Users/darkf/CLion 2023.2.1/jbr/bin/M1OEP-hschoppe/."
   OBJECT_DIR = CMakeFiles\M1OEP_hschoppe.dir
@@ -71,7 +71,7 @@ build CMakeFiles/M1OEP_hschoppe.dir/Hangman.cpp.obj: CXX_COMPILER__M1OEP_hschopp
 #############################################
 # Link the executable M1OEP_hschoppe.exe
 
-build M1OEP_hschoppe.exe: CXX_EXECUTABLE_LINKER__M1OEP_hschoppe_Debug CMakeFiles/M1OEP_hschoppe.dir/main.cpp.obj CMakeFiles/M1OEP_hschoppe.dir/Hangman.cpp.obj
+build M1OEP_hschoppe.exe: CXX_EXECUTABLE_LINKER__M1OEP_hschoppe_Debug CMakeFiles/M1OEP_hschoppe.dir/main.cpp.obj CMakeFiles/M1OEP_hschoppe.dir/Connections.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\M1OEP_hschoppe.dir

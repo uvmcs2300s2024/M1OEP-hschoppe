@@ -18,7 +18,7 @@ private:
     //LOOK AFTER : guard, mind, tend, watch
     //SOUGHT AFTER IN WIZARD OF OZ: brain, courage, heart, home
     //SILENT W: answer, two, wrist, wrong
-    const enum wordlist { ache = 1, burn = 1, smart = 1, sting = 1,
+    enum wordlist { ache = 1, burn = 1, smart = 1, sting = 1,
                     guard = 2, mind = 2, tend = 2, watch = 2,
                     brain = 3, courage = 3, heart = 3, home = 3,
                     answer = 4, two = 4, wrist = 4, wrong = 4};
@@ -26,8 +26,12 @@ private:
                          {"a", "a", "a", "a"},
                          {"a", "a", "a", "a"},
                          {"a", "a", "a", "a"}};
-    const list<string> words{"ache" "burn" "smart" "sting" "guard" "mind" "tend" "watch" "brain" "courage" "heart" "home" "answer" "two" "wrist" "wrong"};
+    const vector<string> words{"ache" "burn" "smart" "sting" "guard" "mind" "tend" "watch" "brain" "courage" "heart" "home" "answer" "two" "wrist" "wrong"};
 public:
+
+    wordlist& operator==(string s1, string s2)  {
+        wordlist
+    }
     /*
      * Default Constructor
      * Requires: nothing
@@ -45,14 +49,19 @@ public:
 
     bool  print_grid();
 
-
     bool print_rules();
 
 
-    bool scramble();
+    void scramble(int rows);
 
 
     bool remove_words();
+
+    bool print_turn(int guesses);
+
+    bool input_validation(string guess, int rows);
+
+    bool verify_guess(string wordOne, string wordTwo, string wordThree, string wordFour);
 
 
 
