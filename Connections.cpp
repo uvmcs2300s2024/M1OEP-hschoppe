@@ -10,8 +10,14 @@
 using namespace std;
 
 inline Connections::Connections() {
-    int random = rand() % 15 + 1;
-    wordlist choice = wordlist(random);
+    //int random = rand() % 15 + 1;
+    //wordlist choice = wordlist(random);
+
+    //Testing
+    //Overload operator accepts strings. We then need a way to turn the strings into enum types
+    //After that we can use the enum types hopefully
+    cout << "Is ache equal to burn? " << (ache == burn) << endl;
+    cout << "Is ache equal to guard? " << (ache == guard) << endl;
 }
 
 
@@ -19,6 +25,10 @@ inline Connections::Connections() {
 //ENUM - SIXTEEN WORDS, EACH WITH 1,2,3,4 AND THAT DETERMINES WHICH GROUP
 
 bool inline Connections::print_grid() {
+    cout << grid[0][0] << "\t" << grid[0][1] << "\t" << grid[0][2] << "\t" << grid[0][3] << endl;
+    cout << grid[1][0] << "\t" << grid[1][1] << "\t" << grid[1][2] << "\t" << grid[1][3] << endl;
+    cout << grid[2][0] << "\t" << grid[2][1] << "\t" << grid[2][2] << "\t" << grid[2][3] << endl;
+    cout << grid[3][0] << "\t" << grid[3][1] << "\t" << grid[3][2] << "\t" << grid[3][3] << endl;
     return true;
 }
 
@@ -166,7 +176,8 @@ bool inline Connections::input_validation(string guess, int rows) {
 bool inline verify_guess(string wordOne, string wordTwo, string wordThree, string wordFour) {
     //OVERLOAD OPERATORS !!!!
 
-    if (wordOne == wordTwo == wordThree == wordFour) {
+    if (wordOne == wordTwo &&  wordTwo == wordThree && wordThree == wordFour) {
+        //get what the label is from the enum
 
     }
 

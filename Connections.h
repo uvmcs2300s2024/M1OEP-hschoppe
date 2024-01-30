@@ -29,7 +29,7 @@ private:
     const vector<string> words{"ache" "burn" "smart" "sting" "guard" "mind" "tend" "watch" "brain" "courage" "heart" "home" "answer" "two" "wrist" "wrong"};
 public:
 
-    wordlist& operator==(string s1, string s2)  {
+    ostream& operator==(wordlist s1, wordlist s2, )  { //might need to be strings
         wordlist
     }
     /*
