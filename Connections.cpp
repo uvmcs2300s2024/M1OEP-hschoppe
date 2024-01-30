@@ -16,8 +16,8 @@ inline Connections::Connections() {
     //Testing
     //Overload operator accepts strings. We then need a way to turn the strings into enum types
     //After that we can use the enum types hopefully
-    cout << "Is ache equal to burn? " << (ache == burn) << endl;
-    cout << "Is ache equal to guard? " << (ache == guard) << endl;
+    cout << "Is ache equal to burn? " << (Wordlist::ache ==Wordlist::burn) << endl;
+    cout << "Is ache equal to guard? " << (Wordlist::ache == Wordlist::guard) << endl;
 }
 
 
@@ -70,10 +70,6 @@ void inline Connections::scramble(int rows) {
 
 
 
-}
-
-bool inline Connections::remove_words() {
-    return true;
 }
 
 bool inline Connections::print_turn(int guesses) {
@@ -136,7 +132,7 @@ bool inline Connections::input_validation(string guess, int rows) {
         wordsCopy = words;
         int counting = 0;
 
-        for (int i = 0; i < words.size(); i++) {
+        for (int i = 0; i < words.size(); i++) { //maybe wordsCopy.size?? idk
             if (wordOne == wordsCopy[i]) {
                 wordsCopy[i].erase(i);
                 counting++;
@@ -173,12 +169,44 @@ bool inline Connections::input_validation(string guess, int rows) {
 
 }
 
-bool inline verify_guess(string wordOne, string wordTwo, string wordThree, string wordFour) {
+bool inline Connections::verify_guess(string wordOne, string wordTwo, string wordThree, string wordFour) {
     //OVERLOAD OPERATORS !!!!
 
     if (wordOne == wordTwo &&  wordTwo == wordThree && wordThree == wordFour) {
         //get what the label is from the enum
+        int number = 0;
+        Wordlist wordTest = word_map.at(wordOne);
+
+        if (wordTest == Wordlist::ache) {
+            //1
+            number = 1;
+        }
+        else if (wordTest == Wordlist::guard) {
+            number = 2;
+        }
+        else if (wordTest == Wordlist::brain) {
+            number = 3;
+        }
+        else if (wordTest == Wordlist::answer) {
+            number = 4;
+
+        }
+
+        remove_words(number);
+        return true;
 
     }
+    else {
+        return false;
+    }
 
+}
+
+bool inline Connections::remove_words(int number) {
+
+    //Number is the number in enum. We have to take this number and remove stuff
+    //For word in list, if word == word in enum region that is being removed, delete from list
+
+
+    return true;
 }

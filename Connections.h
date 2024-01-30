@@ -8,7 +8,38 @@
 #include <iostream>
 #include <vector>
 #include <list>
+#include <unordered_map>
+
 using namespace std;
+
+//https://stackoverflow.com/questions/7163069/c-string-to-enum
+enum class Wordlist { ache = 1, burn = 1, smart = 1, sting = 1,
+    guard = 2, mind = 2, tend = 2, watch = 2,
+    brain = 3, courage = 3, heart = 3, home = 3,
+    answer = 4, two = 4, wrist = 4, wrong = 4};
+
+unordered_map<string, Wordlist> const word_map {
+        {"ache", Wordlist::ache},
+        {"burn", Wordlist::burn},
+        {"smart", Wordlist::smart},
+        {"sting", Wordlist::sting},
+        {"guard", Wordlist::guard},
+        {"mind", Wordlist::mind},
+        {"tend", Wordlist::tend},
+        {"watch", Wordlist::watch},
+        {"brain", Wordlist::brain},
+        {"courage", Wordlist::courage},
+        {"heart", Wordlist::heart},
+        {"home", Wordlist::home},
+        {"answer", Wordlist::answer},
+        {"two", Wordlist::two},
+        {"wrist", Wordlist::wrist},
+        {"wrong", Wordlist::wrong},
+};
+
+
+
+
 
 class Connections {
 
@@ -18,20 +49,16 @@ private:
     //LOOK AFTER : guard, mind, tend, watch
     //SOUGHT AFTER IN WIZARD OF OZ: brain, courage, heart, home
     //SILENT W: answer, two, wrist, wrong
-    enum wordlist { ache = 1, burn = 1, smart = 1, sting = 1,
-                    guard = 2, mind = 2, tend = 2, watch = 2,
-                    brain = 3, courage = 3, heart = 3, home = 3,
-                    answer = 4, two = 4, wrist = 4, wrong = 4};
+
     string grid[4][4] = {{"a", "a", "a", "a"},
                          {"a", "a", "a", "a"},
                          {"a", "a", "a", "a"},
                          {"a", "a", "a", "a"}};
     const vector<string> words{"ache" "burn" "smart" "sting" "guard" "mind" "tend" "watch" "brain" "courage" "heart" "home" "answer" "two" "wrist" "wrong"};
+
+
 public:
 
-    ostream& operator==(wordlist s1, wordlist s2, )  { //might need to be strings
-        wordlist
-    }
     /*
      * Default Constructor
      * Requires: nothing
@@ -55,7 +82,6 @@ public:
     void scramble(int rows);
 
 
-    bool remove_words();
 
     bool print_turn(int guesses);
 
@@ -63,21 +89,24 @@ public:
 
     bool verify_guess(string wordOne, string wordTwo, string wordThree, string wordFour);
 
+    bool remove_words(int number);
 
 
 };
 
+//Overload operator
+//Check if two strings in wordlist carry the same value in the enum wordlist
+bool operator==(string s1, string s2)  { //might need to be strings
+    Wordlist word1 = word_map.at(s1);
+    Wordlist word2 = word_map.at(s2);
+    if (word1 == word2) {
+        return true;
+    }
+    else {
+        return false;
+    }
 
-
-
-
-
-
-
-
-
-
-
+}
 
 
 
