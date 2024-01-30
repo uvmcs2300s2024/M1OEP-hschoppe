@@ -207,6 +207,29 @@ bool inline Connections::remove_words(int number) {
     //Number is the number in enum. We have to take this number and remove stuff
     //For word in list, if word == word in enum region that is being removed, delete from list
 
+    for (int i = 0; i < words.size(); i++) {
+        Wordlist wordCheck = word_map.at(words[i]);
+        if (number == 1) {
+            if (wordCheck == Wordlist::ache) {
+                //remove words[i]
+            }
+        }
+        else if (number == 1) {
+            if (wordCheck == Wordlist::ache) {
+                //remove words[i]
+            }
+        }
+        if (number == 1) {
+            if (wordCheck == Wordlist::ache) {
+                //remove words[i]
+            }
+        }
+        if (number == 1) {
+            if (wordCheck == Wordlist::ache) {
+                //remove words[i]
+            }
+        }
+    }
 
     return true;
 }

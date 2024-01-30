@@ -49,6 +49,7 @@ private:
     //LOOK AFTER : guard, mind, tend, watch
     //SOUGHT AFTER IN WIZARD OF OZ: brain, courage, heart, home
     //SILENT W: answer, two, wrist, wrong
+    //enum groups{HURT = "Hurt", LOOK AFTER = "Look After", S};
 
     string grid[4][4] = {{"a", "a", "a", "a"},
                          {"a", "a", "a", "a"},
