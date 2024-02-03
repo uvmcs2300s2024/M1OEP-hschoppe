@@ -25,6 +25,8 @@ int main() {
             int inputReturn = connections.input_validation(guess, rows);
             if (inputReturn == 1) {
                 //Reset or scramble, condition does not change
+                connections.print_grid();
+                connections.print_turn(guesses);
             }
             else if (inputReturn == 2) {
                 //everything correct, rows - 1

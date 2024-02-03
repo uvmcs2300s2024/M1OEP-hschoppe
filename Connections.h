@@ -55,7 +55,7 @@ private:
                          {"a", "a", "a", "a"},
                          {"a", "a", "a", "a"},
                          {"a", "a", "a", "a"}};
-    vector<string> words{"ache" "burn" "smart" "sting" "guard" "mind" "tend" "watch" "brain" "courage" "heart" "home" "answer" "two" "wrist" "wrong"};
+    vector<string> words{"ache", "burn", "smart", "sting", "guard", "mind", "tend", "watch", "brain", "courage", "heart", "home", "answer", "two", "wrist", "wrong"};
 
 
 public:

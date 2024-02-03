@@ -17,8 +17,8 @@ inline Connections::Connections() {
     //Testing
     //Overload operator accepts strings. We then need a way to turn the strings into enum types
     //After that we can use the enum types hopefully
-    //cout << "Is ache equal to burn? " << (Wordlist::ache ==Wordlist::burn) << endl;
-    //cout << "Is ache equal to guard? " << (Wordlist::ache == Wordlist::guard) << endl;
+
+    scramble(4);
 }
 
 
@@ -49,15 +49,15 @@ void inline Connections::scramble(int rows) {
 
     //Make a backup list to iterate through while sorting
     vector<string> wordsCopy;
-    wordsCopy = words;
+    wordsCopy = words; //s = 16 (15)
 
     //Number of columns
-    for (int down = 0; down < rows; ++down) {
+    for (int down = 0; down < rows; down++) {
         //Number of rows
-        for (int across = 0; across < 4; ++across) {
+        for (int across = 0; across < 4; across++) {
             //Now will iterate through from left to right
             listSize = wordsCopy.size(); //should automatically update while iterating through
-            randomNumber = rand() % listSize + 1;
+            randomNumber = (rand() % listSize);
             currentWord = wordsCopy[randomNumber];
 
             //replaces position of grid with current word
