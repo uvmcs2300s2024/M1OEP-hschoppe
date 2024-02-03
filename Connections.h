@@ -55,7 +55,7 @@ private:
                          {"a", "a", "a", "a"},
                          {"a", "a", "a", "a"},
                          {"a", "a", "a", "a"}};
-    const vector<string> words{"ache" "burn" "smart" "sting" "guard" "mind" "tend" "watch" "brain" "courage" "heart" "home" "answer" "two" "wrist" "wrong"};
+    vector<string> words{"ache" "burn" "smart" "sting" "guard" "mind" "tend" "watch" "brain" "courage" "heart" "home" "answer" "two" "wrist" "wrong"};
 
 
 public:
@@ -86,7 +86,7 @@ public:
 
     bool print_turn(int guesses);
 
-    bool input_validation(string guess, int rows);
+    int input_validation(string guess, int rows);
 
     bool verify_guess(string wordOne, string wordTwo, string wordThree, string wordFour);
 
@@ -97,7 +97,7 @@ public:
 
 //Overload operator
 //Check if two strings in wordlist carry the same value in the enum wordlist
-bool operator==(string s1, string s2)  { //might need to be strings
+bool inline operator==(string s1, string s2)  { //might need to be strings
     Wordlist word1 = word_map.at(s1);
     Wordlist word2 = word_map.at(s2);
     if (word1 == word2) {

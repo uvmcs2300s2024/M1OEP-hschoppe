@@ -22,18 +22,32 @@ int main() {
         while (!condition) {
             getline(cin, guess);
 
-            if (connections.input_validation(guess, rows)) {
-                cout << "wow" << endl;
+            int inputReturn = connections.input_validation(guess, rows);
+            if (inputReturn == 1) {
+                //Reset or scramble, condition does not change
+            }
+            else if (inputReturn == 2) {
+                //everything correct, rows - 1
+                rows -= 1;
+            }
+            else if (inputReturn == 3) {
+                //valid guesses but not correct
+                guesses -= 1;
+                cout << "This is not a correct group. You have " << guesses << " guesses remaining." << endl;
             }
             else {
                 cout << "Invalid input" << endl;
                 connections.print_turn(guesses);
             }
         }
-
-
-
+    }
+    //Lose condition
+    if (guesses == 0 || guesses < 0) {
+        cout << "Game Over! You Lose." << endl;
     }
 
-    //rand() % 15 + 1 to choose word
+    //Win condition
+    if (rows == 0) {
+        cout << "Congratulations! You win! " << endl;
+    }
 }

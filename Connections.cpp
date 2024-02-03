@@ -7,6 +7,7 @@
 #include <list>
 #include <string>
 #include <sstream>
+#include <algorithm>
 using namespace std;
 
 inline Connections::Connections() {
@@ -16,8 +17,8 @@ inline Connections::Connections() {
     //Testing
     //Overload operator accepts strings. We then need a way to turn the strings into enum types
     //After that we can use the enum types hopefully
-    cout << "Is ache equal to burn? " << (Wordlist::ache ==Wordlist::burn) << endl;
-    cout << "Is ache equal to guard? " << (Wordlist::ache == Wordlist::guard) << endl;
+    //cout << "Is ache equal to burn? " << (Wordlist::ache ==Wordlist::burn) << endl;
+    //cout << "Is ache equal to guard? " << (Wordlist::ache == Wordlist::guard) << endl;
 }
 
 
@@ -78,14 +79,19 @@ bool inline Connections::print_turn(int guesses) {
     return true;
 }
 
-bool inline Connections::input_validation(string guess, int rows) {
+int inline Connections::input_validation(string guess, int rows) {
     //Test if asking for instructions or shuffle:
-    cout << guess << endl;
-    if (guess == "r") {
+    cout << guess << endl; //why is this here TODO remove maybe
+    //Test if a single letter input, for scramble or rules.
+    //Needed because overload operator only works for strings within WordList.
+    char singleLetter = guess.at(0);
+    if (singleLetter == 'r' && guess.length() == 1) {
         print_rules();
+        return 1;
     }
-    else if (guess == "s") {
+    else if (singleLetter == 's' && guess.length() == 1) {
         scramble(rows);
+        return 1;
     }
     else {
         //We are looking for four separate words, separated by at least one space.
@@ -117,13 +123,13 @@ bool inline Connections::input_validation(string guess, int rows) {
                 counter++;
 
             } else {
-                return false;
+                return 0;
             }
         }
 
         //Verifies that you do not have fewer than four words
         if (counter != 5) {
-            return false;
+            return 0;
         }
 
         //Verify that words are in the list
@@ -132,41 +138,57 @@ bool inline Connections::input_validation(string guess, int rows) {
         wordsCopy = words;
         int counting = 0;
 
+
+        //This SHOULD work still despite overload operator - as long as both words are, in fact, within WordList
+        //TODO - deleting based on index means that
+        char a1, a2, a3, b1, b2, b3, c1, c2, c3, d1, d2, d3;
+
         for (int i = 0; i < words.size(); i++) { //maybe wordsCopy.size?? idk
+
             if (wordOne == wordsCopy[i]) {
-                wordsCopy[i].erase(i);
+                //a1 = wordOne.at(0)
                 counting++;
             }
 
             if (wordTwo == wordsCopy[i]) {
-                wordsCopy[i].erase(i);
                 counting++;
             }
 
             if (wordThree == wordsCopy[i]) {
-                wordsCopy[i].erase(i);
                 counting++;
             }
 
             if (wordFour == wordsCopy[i]) {
-                wordsCopy[i].erase(i);
                 counting++;
             }
+        }
+
+        //Verify that all words are not the same
+        if (wordOne.at(0) == wordTwo.at(0) && wordOne.at(1) == wordTwo.at(1) && wordOne.at(2) == wordTwo.at(2)) {
+            return 0;
+        }
+        else if (wordOne.at(0) == wordThree.at(0) && wordOne.at(1) == wordThree.at(1) && wordOne.at(2) == wordThree.at(2)) {
+            return 0;
+        }
+        else if (wordOne.at(0) == wordFour.at(0) && wordOne.at(1) == wordFour.at(1) && wordOne.at(2) == wordFour.at(2)) {
+            return 3;
         }
 
         //Tests that all four were removed from the copy, meaning all four words still existed in possibilities
         int comparisonSize = words.size() - 4;
         if (counting == 4 && wordsCopy.size() == comparisonSize) {
-            verify_guess(wordOne, wordTwo, wordThree, wordFour);
-            //TODO return here after verify guess
+            if (verify_guess(wordOne, wordTwo, wordThree, wordFour)) {
+                return 2;
+            }
+            else {
+                return 3;
+            }
+            //TODO check all this
         }
-
-
-        //guess >> wordOne >> wordTwo >> wordThree >>wordFour;
-
 
     }
 
+    return 0;
 }
 
 bool inline Connections::verify_guess(string wordOne, string wordTwo, string wordThree, string wordFour) {
@@ -206,28 +228,44 @@ bool inline Connections::remove_words(int number) {
 
     //Number is the number in enum. We have to take this number and remove stuff
     //For word in list, if word == word in enum region that is being removed, delete from list
+    cout << "Congratulations! You found one of the groups!" << endl;
 
     for (int i = 0; i < words.size(); i++) {
         Wordlist wordCheck = word_map.at(words[i]);
         if (number == 1) {
-            if (wordCheck == Wordlist::ache) {
+            if (wordCheck == Wordlist::ache) { //this also might not work
                 //remove words[i]
+                words[i].erase(i); //Might need to double-check these
             }
+            cout << "Group One : Hurt" << endl;
+            print_grid(); //TODO - maybe remove these idek
+
         }
-        else if (number == 1) {
-            if (wordCheck == Wordlist::ache) {
+        else if (number == 2) {
+            if (wordCheck == Wordlist::guard) {
                 //remove words[i]
+                words[i].erase(i);
             }
+            cout << "Group Two : Look After" << endl;
+            print_grid();
+
+
         }
-        if (number == 1) {
-            if (wordCheck == Wordlist::ache) {
+        if (number == 3) {
+            if (wordCheck == Wordlist::brain) {
                 //remove words[i]
+                words[i].erase(i);
             }
+            cout << "Group Three : Sought After in The Wizard Of Oz" << endl;
+            print_grid();
         }
-        if (number == 1) {
-            if (wordCheck == Wordlist::ache) {
+        if (number == 4) {
+            if (wordCheck == Wordlist::answer) {
                 //remove words[i]
+                words[i].erase(i);
             }
+            cout << "Group Four : Silent W" << endl;
+            print_grid();
         }
     }
 
