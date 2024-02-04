@@ -11,12 +11,6 @@
 using namespace std;
 
 inline Connections::Connections() {
-    //int random = rand() % 15 + 1;
-    //wordlist choice = wordlist(random);
-
-    //Testing
-    //Overload operator accepts strings. We then need a way to turn the strings into enum types
-    //After that we can use the enum types hopefully
 
     scramble(4);
 }
@@ -88,6 +82,7 @@ void inline Connections::scramble(int rows) {
 bool inline Connections::print_turn(int guesses) {
     cout << "You have " << guesses << " guesses remaining. " << endl;
     cout << "Type your four words separated by commas to guess, type (s) to shuffle words, or type (r) for rules." << endl;
+    cout << "Make sure not to have spaces in your guess! Example valid input: first,second,third,fourth " << endl;
     return true;
 }
 
