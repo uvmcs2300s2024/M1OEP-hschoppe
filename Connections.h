@@ -99,14 +99,20 @@ public:
 //Overload operator
 //Check if two strings in wordlist carry the same value in the enum wordlist
 bool inline operator==(string s1, string s2)  {
-    Wordlist word1 = word_map.at(s1);
-    Wordlist word2 = word_map.at(s2);
-    if (word1 == word2) {
-        return true;
+    if (word_map.find(s1) != word_map.end() && word_map.find(s2) != word_map.end()) {
+        Wordlist word1 = word_map.at(s1);
+        Wordlist word2 = word_map.at(s2);
+        if (word1 == word2) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
     else {
         return false;
     }
+
 
 }
 

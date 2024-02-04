@@ -14,6 +14,7 @@ int main() {
 
     //repeat until guesses = 0 OR rows = 0
     while (guesses > 0 && rows > 0) {
+        connections.scramble(rows);
         connections.print_grid();
         connections.print_turn(guesses); // in a loop?
         bool condition = false;
@@ -31,13 +32,13 @@ int main() {
             else if (inputReturn == 2) {
                 //everything correct, rows - 1
                 rows -= 1;
-                connections.scramble(rows);
-                connections.print_turn(guesses);
+                condition = true;
             }
             else if (inputReturn == 3) {
                 //valid guesses but not correct
                 guesses -= 1;
                 cout << "This is not a correct group. You have " << guesses << " guesses remaining." << endl;
+                condition = true;
             }
             else {
                 cout << "Invalid input" << endl;

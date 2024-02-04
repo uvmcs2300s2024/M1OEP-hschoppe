@@ -97,7 +97,6 @@ int inline Connections::input_validation(string guess, int rows) {
     //Test if a single letter input, for scramble or rules.
     //Needed because overload operator only works for strings within WordList.
     char singleLetter = guess.at(0);
-    cout << singleLetter << endl;
     if (singleLetter == 'r' && guess.length() == 1) {
         print_rules();
         return 1;
@@ -158,7 +157,6 @@ int inline Connections::input_validation(string guess, int rows) {
 
         for (int i = 0; i < words.size(); i++) { //maybe wordsCopy.size?? idk
 
-            cout << words.size() << endl;
             if (wordOne == wordsBackup[i]) {
                 //a1 = wordOne.at(0)
                 counting++;
@@ -245,34 +243,41 @@ bool inline Connections::remove_words(int number) {
     cout << "Congratulations! You found one of the groups!" << endl;
 
     for (int i = 0; i < words.size(); i++) {
-        Wordlist wordCheck = word_map.at(words[i]);
-        if (number == 1) {
-            if (wordCheck == Wordlist::ache) { //this also might not work
-                //remove words[i]
-                words[i].erase(0); //Might need to double-check these
-            }
+        Wordlist wordCheck;
 
-        }
-        else if (number == 2) {
-            if (wordCheck == Wordlist::guard) {
-                //remove words[i]
-                words[i].erase(0);
-            }
+        //If statement to make sure not already empty, which will interfere with unordered map at
+        if (words[i] != "") {
+            wordCheck = word_map.at(words[i]);
 
-        }
-        if (number == 3) {
-            if (wordCheck == Wordlist::brain) {
-                //remove words[i]
-                words[i].erase(0);
-            }
+            if (number == 1) {
+                if (wordCheck == Wordlist::ache) { //this also might not work
+                    //remove words[i]
+                    words[i].erase(0); //Might need to double-check these
+                }
 
-        }
-        if (number == 4) {
-            if (wordCheck == Wordlist::answer) {
-                //remove words[i]
-                words[i].erase(0);
+            }
+            else if (number == 2) {
+                if (wordCheck == Wordlist::guard) {
+                    //remove words[i]
+                    words[i].erase(0);
+                }
+
+            }
+            if (number == 3) {
+                if (wordCheck == Wordlist::brain) {
+                    //remove words[i]
+                    words[i].erase(0);
+                }
+
+            }
+            if (number == 4) {
+                if (wordCheck == Wordlist::answer) {
+                    //remove words[i]
+                    words[i].erase(0);
+                }
             }
         }
+
     }
 
     if (number == 1) {
