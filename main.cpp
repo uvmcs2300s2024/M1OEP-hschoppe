@@ -8,7 +8,7 @@ int main() {
     Connections connections;
     connections.print_rules();
 
-    int guesses = 5;
+    int guesses = 4;
     int rows = 4;
     string guess;
 
@@ -31,6 +31,8 @@ int main() {
             else if (inputReturn == 2) {
                 //everything correct, rows - 1
                 rows -= 1;
+                connections.scramble(rows);
+                connections.print_turn(guesses);
             }
             else if (inputReturn == 3) {
                 //valid guesses but not correct

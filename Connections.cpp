@@ -49,7 +49,15 @@ void inline Connections::scramble(int rows) {
 
     //Make a backup list to iterate through while sorting
     vector<string> wordsCopy;
-    wordsCopy = words; //s = 16 (15)
+    wordsCopy.clear();
+    wordsCopy = words;
+
+    //Fill all with x's
+    for (int downOriginal = 0; downOriginal < 4; downOriginal++) {
+        for (int acrossOriginal = 0; acrossOriginal < 4; acrossOriginal++) {
+            grid[downOriginal][acrossOriginal] = 'x';
+        }
+    }
 
     //Number of columns
     for (int down = 0; down < rows; down++) {
@@ -57,8 +65,14 @@ void inline Connections::scramble(int rows) {
         for (int across = 0; across < 4; across++) {
             //Now will iterate through from left to right
             listSize = wordsCopy.size(); //should automatically update while iterating through
-            randomNumber = (rand() % listSize);
-            currentWord = wordsCopy[randomNumber];
+            bool condition = false;
+            while (!condition) {
+                randomNumber = (rand() % listSize);
+                if (wordsCopy[randomNumber] != "") {
+                    currentWord = wordsCopy[randomNumber];
+                    condition = true;
+                }
+            }
 
             //replaces position of grid with current word
             grid[down][across] = currentWord;
@@ -68,8 +82,6 @@ void inline Connections::scramble(int rows) {
 
         }
     }
-
-
 
 }
 
@@ -85,6 +97,7 @@ int inline Connections::input_validation(string guess, int rows) {
     //Test if a single letter input, for scramble or rules.
     //Needed because overload operator only works for strings within WordList.
     char singleLetter = guess.at(0);
+    cout << singleLetter << endl;
     if (singleLetter == 'r' && guess.length() == 1) {
         print_rules();
         return 1;
@@ -145,20 +158,21 @@ int inline Connections::input_validation(string guess, int rows) {
 
         for (int i = 0; i < words.size(); i++) { //maybe wordsCopy.size?? idk
 
-            if (wordOne == wordsCopy[i]) {
+            cout << words.size() << endl;
+            if (wordOne == wordsBackup[i]) {
                 //a1 = wordOne.at(0)
                 counting++;
             }
 
-            if (wordTwo == wordsCopy[i]) {
+            if (wordTwo == wordsBackup[i]) {
                 counting++;
             }
 
-            if (wordThree == wordsCopy[i]) {
+            if (wordThree == wordsBackup[i]) {
                 counting++;
             }
 
-            if (wordFour == wordsCopy[i]) {
+            if (wordFour == wordsBackup[i]) {
                 counting++;
             }
         }
@@ -171,7 +185,7 @@ int inline Connections::input_validation(string guess, int rows) {
             return 0;
         }
         else if (wordOne.at(0) == wordFour.at(0) && wordOne.at(1) == wordFour.at(1) && wordOne.at(2) == wordFour.at(2)) {
-            return 3;
+            return 0; //return 3?
         }
 
         //Tests that all four were removed from the copy, meaning all four words still existed in possibilities
@@ -235,39 +249,46 @@ bool inline Connections::remove_words(int number) {
         if (number == 1) {
             if (wordCheck == Wordlist::ache) { //this also might not work
                 //remove words[i]
-                words[i].erase(i); //Might need to double-check these
+                words[i].erase(0); //Might need to double-check these
             }
-            cout << "Group One : Hurt" << endl;
-            print_grid(); //TODO - maybe remove these idek
 
         }
         else if (number == 2) {
             if (wordCheck == Wordlist::guard) {
                 //remove words[i]
-                words[i].erase(i);
+                words[i].erase(0);
             }
-            cout << "Group Two : Look After" << endl;
-            print_grid();
-
 
         }
         if (number == 3) {
             if (wordCheck == Wordlist::brain) {
                 //remove words[i]
-                words[i].erase(i);
+                words[i].erase(0);
             }
-            cout << "Group Three : Sought After in The Wizard Of Oz" << endl;
-            print_grid();
+
         }
         if (number == 4) {
             if (wordCheck == Wordlist::answer) {
                 //remove words[i]
-                words[i].erase(i);
+                words[i].erase(0);
             }
-            cout << "Group Four : Silent W" << endl;
-            print_grid();
         }
     }
+
+    if (number == 1) {
+        cout << "Group One : Hurt" << endl;
+    }
+    else if (number == 2) {
+        cout << "Group Two : Look After" << endl;
+    }
+    else if (number == 3) {
+        cout << "Group Three : Sought After in The Wizard Of Oz" << endl;
+    }
+    else if (number == 4) {
+        cout << "Group Four : Silent W" << endl;
+    }
+
+    //print_grid();
 
     return true;
 }
