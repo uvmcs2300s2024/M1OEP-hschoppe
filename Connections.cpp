@@ -75,7 +75,7 @@ void inline Connections::scramble(int rows) {
 
 bool inline Connections::print_turn(int guesses) {
     cout << "You have " << guesses << " guesses remaining. " << endl;
-    cout << "Type your four words separated by spaces to guess, type (s) to shuffle words, or type (r) for rules." << endl;
+    cout << "Type your four words separated by commas to guess, type (s) to shuffle words, or type (r) for rules." << endl;
     return true;
 }
 
@@ -105,7 +105,7 @@ int inline Connections::input_validation(string guess, int rows) {
 
         //Separate into four words - if more then fails
         while(ss.good()) {
-            getline(ss, singleWord);
+            getline(ss, singleWord, ',');
             if (counter == 1) {
                 wordOne = singleWord;
                 counter++;
@@ -175,8 +175,8 @@ int inline Connections::input_validation(string guess, int rows) {
         }
 
         //Tests that all four were removed from the copy, meaning all four words still existed in possibilities
-        int comparisonSize = words.size() - 4;
-        if (counting == 4 && wordsCopy.size() == comparisonSize) {
+        int comparisonSize = words.size();
+        if (counting == 16 && wordsCopy.size() == comparisonSize) {
             if (verify_guess(wordOne, wordTwo, wordThree, wordFour)) {
                 return 2;
             }
